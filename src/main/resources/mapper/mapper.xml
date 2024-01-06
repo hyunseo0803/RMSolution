@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="a.b.c.dao.MemberDAO">
+    <insert id="insertMember" parameterType="a.b.c.vo.MemberVO">
+        INSERT INTO member(mid, pw)
+        VALUES (#{mid}, #{pw})
+    </insert>
+    <select id="findByIdpw" parameterType="String">
+        SELECT pw
+        FROM member
+        WHERE mid = #{mid}
+    </select>
+    <select id="isIdDuplicate" parameterType="String">
+        SELECT COUNT(*)
+        FROM member
+        WHERE mid = #{mid}
+    </select>
+
+</mapper>
