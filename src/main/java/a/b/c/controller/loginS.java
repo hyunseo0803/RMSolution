@@ -20,7 +20,7 @@ public class loginS {
     @PostMapping("/signup")
     public String signup(MemberVO member){
         memberService.insertMember(member);
-        return "home.jsp";
+        return "home";
     }
 
     //회원 가입- 아이디 중복 검사
@@ -32,24 +32,6 @@ public class loginS {
         checking.put("checking", check);
         return checking;
 
-    }
-
-    //로그인- 계정 존재 확인 후 , 비밀 번호 확인
-    @ResponseBody //JSON 변환
-    @PostMapping("/isUser")
-    public Map<String, Object> login(@RequestParam String mid,@RequestParam String pw) {
-        Map<String, Object> user = new HashMap<>();
-        if (memberService.IsExistingMember(mid)){
-            String memberpw = memberService.findByIdpw(mid);
-            Boolean isuser = memberpw.equals(pw);
-            user.put("isUser", isuser);
-            return user;
-        }
-        //존재 하는 계정이 아닐 경우, 바로 false 리턴
-        else {
-            user.put("isUser",false);
-            return user;
-        }
     }
 
 }
