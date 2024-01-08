@@ -1,15 +1,18 @@
 package a.b.c.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class dashBoard {
 
     //DashBoard
-    @PostMapping("/loginSuccess")
-    public String Dashboard() {
-        //사용자 정보 대시보드로 보냄
-        return "dashBoard.jsp";
+    @GetMapping("/dashBoard")
+    public String dashboardPage(@AuthenticationPrincipal User user, Model model) {
+        model.addAttribute("mid", user.getUsername());
+        return "dashBoard";
     }
 }
