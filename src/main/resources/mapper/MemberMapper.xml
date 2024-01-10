@@ -5,18 +5,15 @@
         INSERT INTO member(mid, pw)
         VALUES (#{mid}, #{pw})
     </insert>
-    <select id="findByIdpw" parameterType="String">
-        SELECT pw
+    <select id="findByUserid" parameterType="String">
+        SELECT *
         FROM member
         WHERE mid = #{mid}
-    </select>
-    <select id="findByUserid" parameterType="String">
-        SELECT * FROM member WHERE mid=#{mid}
     </select>
     <select id="isIdDuplicate" parameterType="String">
         SELECT COUNT(*)
         FROM member
         WHERE mid = #{mid}
     </select>
-
 </mapper>
+
