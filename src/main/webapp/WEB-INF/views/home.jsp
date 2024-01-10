@@ -21,6 +21,8 @@
     </a>
 </c:if>
 
+<h1>서비스 설명 불라불라</h1>
+
 
 <%@include file="common/footer.jsp"%>
 </body>
