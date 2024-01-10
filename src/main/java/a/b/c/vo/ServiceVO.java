@@ -1,21 +1,24 @@
 package a.b.c.vo;
 
+import java.time.LocalDate;
+
 public class ServiceVO {
-    MemberVO mid;
+
+    String mid;
     Integer usercnt;
     String kindof;
-    String startdate;
-    String enddate;
+    LocalDate date;
+    String month;
     String company;
-    Integer phone;
+    String phone;
     String email;
     Integer usage;
 
-    public MemberVO getMid() {
+    public String getMid() {
         return mid;
     }
 
-    public void setMid(MemberVO mid) {
+    public void setMid(String mid) {
         this.mid = mid;
     }
 
@@ -35,20 +38,20 @@ public class ServiceVO {
         this.kindof = kindof;
     }
 
-    public String getStartdate() {
-        return startdate;
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setStartdate(String startdate) {
-        this.startdate = startdate;
+    public void setDate() {
+        this.date = LocalDate.now();
     }
 
-    public String getEnddate() {
-        return enddate;
+    public String getMonth() {
+        return month;
     }
 
-    public void setEnddate(String enddate) {
-        this.enddate = enddate;
+    public void setMonth(String month) {
+        this.month = month;
     }
 
     public String getCompany() {
@@ -59,11 +62,11 @@ public class ServiceVO {
         this.company = company;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
