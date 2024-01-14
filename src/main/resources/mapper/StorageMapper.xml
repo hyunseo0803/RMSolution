@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="a.b.c.dao.StorageDAO">
+    <select id="findAllFileById" parameterType="a.b.c.vo.FileVO">
+        SELECT *
+        FROM file
+        WHERE mid = #{mid}
+    </select>
+    <select id="selectFileInfo">
+        SELECT *
+        FROM file
+        WHERE num = #{num}
+    </select>
+    <insert id="save" parameterType="a.b.c.vo.FileVO">
+        INSERT INTO file(mid, filename, filepath, datetime, size)
+        VALUES (#{mid}, #{filename}, #{filepath}, #{datetime}, #{size})
+    </insert>
+    <delete id="deleteFile">
+        DELETE
+        FROM file
+        WHERE num = #{num}
+    </delete>
+
+</mapper>
