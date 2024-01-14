@@ -6,8 +6,23 @@
         FROM service
         WHERE mid = #{mid}
     </select>
+    <select id="sumUsageById">
+        SELECT sum(size)
+        FROM file
+        WHERE mid = #{mid}
+    </select>
     <insert id="insertService" parameterType="a.b.c.vo.ServiceVO">
-        INSERT INTO service(mid, usercnt, kindof, date, month, company, phone, email)
-        VALUES (#{mid}, #{usercnt}, #{kindof}, #{date}, #{month}, #{company}, #{phone}, #{email})
+        INSERT INTO service(mid, username, kindof, startdate, enddate, company, phone, email, volume)
+        VALUES (#{mid}, #{username}, #{kindof}, #{startdate}, #{enddate}, #{company}, #{phone}, #{email}, #{volume})
     </insert>
+    <update id="saveNewEnddate">
+        UPDATE service
+        SET enddate=#{newenddate}
+        WHERE mid = #{mid}
+    </update>
+    <update id="saveNewVolume">
+        UPDATE service
+        SET volume=#{newvolume}
+        WHERE mid = #{mid}
+    </update>
 </mapper>
