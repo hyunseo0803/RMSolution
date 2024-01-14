@@ -1,6 +1,4 @@
 package a.b.c.vo;
-
-
 public class MemberVO {
 
     String mid;

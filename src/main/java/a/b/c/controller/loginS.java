@@ -18,7 +18,7 @@ public class loginS {
 
     //회원 가입- 회원 추가
     @PostMapping("/signup")
-    public String signup(MemberVO member){
+    public String signup(MemberVO member) {
         memberService.insertMember(member);
         return "home";
     }
@@ -26,8 +26,8 @@ public class loginS {
     //회원 가입- 아이디 중복 검사
     @ResponseBody //JSON 변환
     @GetMapping("/checkDuplicate/{mid}")
-    public Map<String, Object> checkDuplicate(@PathVariable String mid){
-        Boolean check=memberService.IsExistingMember(mid);
+    public Map<String, Object> checkDuplicate(@PathVariable String mid) {
+        Boolean check = memberService.IsExistingMember(mid);
         Map<String, Object> checking = new HashMap<>();
         checking.put("checking", check);
         return checking;

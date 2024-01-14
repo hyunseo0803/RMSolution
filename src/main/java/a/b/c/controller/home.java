@@ -1,12 +1,10 @@
 package a.b.c.controller;
 
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class home {
@@ -22,15 +20,16 @@ public class home {
 
         return "home";
     }
+
     //로그인 화면
     @GetMapping("/login")
-    public String loginView(){
+    public String loginView() {
         return "login";
     }
 
     //회원 가입 화면
     @GetMapping("/signup")
-    public String signupView(){
+    public String signupView() {
         return "signup";
     }
 }

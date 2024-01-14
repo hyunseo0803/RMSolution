@@ -33,13 +33,12 @@
             }
             $.ajax({
                 type: 'GET',
-                url: '/checkDuplicate/' + memberId, // 실제 서버의 경로로 변경
+                url: '/checkDuplicate/' + memberId,
                 success: function (data) {
                     if (!data.checking) {
                         $('#duplicateMessage').text('사용 가능한 아이디입니다.');
                         isDuplicateChecked = true;
                         isAvailable = true;
-
                     } else {
                         $('#duplicateMessage').text('이미 사용 중인 아이디입니다.');
                         isAvailable = false;
@@ -58,7 +57,6 @@
             } else {
                 if (!isDuplicateChecked) {
                     alert('아이디 중복 확인을 해주세요.');
-
                 } else {
                     alert('아이디와 비밀번호를 모두 입력하세요.');
                 }
