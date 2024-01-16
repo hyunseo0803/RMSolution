@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.time.LocalDate;
 import java.util.*;
 
@@ -22,20 +23,19 @@ public class dashBoard {
     //DashBoard
     @GetMapping("/dashBoard")
     public String dashboardPage(@AuthenticationPrincipal User user, Model model) {
-        model.addAttribute("mid", user.getUsername());
         ServiceVO service = serviceService.findServiceByUserId(user.getUsername());
 
         boolean isService = service != null;
         model.addAttribute("isService", isService);
+        model.addAttribute("mid", user.getUsername());
 
         if (isService) {
             Integer usage = serviceService.sumUsageById(user.getUsername());
             String usageBTtoTB;
-            if(usage!=null){
+            if (usage != null) {
                 usageBTtoTB = serviceService.convertBytes(usage);
-            }
-            else{
-                usageBTtoTB="0";
+            } else {
+                usageBTtoTB = "0";
             }
 
             model.addAttribute("sName", service.getKindof());
@@ -45,12 +45,9 @@ public class dashBoard {
             model.addAttribute("sUsage", usageBTtoTB);
             model.addAttribute("sVolume", service.getVolume());
 
-            boolean isScompany = service.getCompany() != null;
-            boolean isSphone = service.getPhone() != null;
-            boolean isSemail = service.getEmail() != null;
-            model.addAttribute("isScompany", isScompany);
-            model.addAttribute("isSphone", isSphone);
-            model.addAttribute("isSemail", isSemail);
+            boolean isScompany = service.getCompany() != "";
+            boolean isSphone = service.getPhone() != "";
+            boolean isSemail = service.getEmail() != "";
 
             if (isScompany) {
                 model.addAttribute("sCompany", service.getCompany());
@@ -74,15 +71,6 @@ public class dashBoard {
     @GetMapping("/volume_extend")
     public String extendVolumeView() {
         return "extendVolume";
-    }
-
-    @PostMapping("/extendVolume")
-    public String extendVolue(@AuthenticationPrincipal User user, int addvolume) {
-        int volume = serviceService.findServiceByUserId(user.getUsername()).getVolume();
-        int newvolume = volume + addvolume;
-
-        serviceService.saveNewVolume(user.getUsername(), newvolume);
-        return "success";
     }
 
     @ResponseBody
@@ -114,7 +102,6 @@ public class dashBoard {
     public Map<String, Object> extendPeriod(@AuthenticationPrincipal User user, @RequestParam int howMonth) {
         ServiceVO service = serviceService.findServiceByUserId(user.getUsername());
         LocalDate enddate = service.getEnddate();
-
         LocalDate newEnddate = enddate.plusMonths(howMonth);
         boolean checking;
 
@@ -130,6 +117,26 @@ public class dashBoard {
         return check;
 
 
+    }
+
+    @PostMapping("/extendVolume")
+    @ResponseBody
+    public Map<String, Object> extendVolue(@AuthenticationPrincipal User user, @RequestParam int addvolume) {
+        int volume = serviceService.findServiceByUserId(user.getUsername()).getVolume();
+        int newvolume = volume + addvolume;
+
+        boolean checking;
+
+        try {
+            serviceService.saveNewVolume(user.getUsername(), newvolume);
+            checking = true;
+        } catch (Exception e) {
+            checking = false;
+        }
+
+        Map<String, Object> check = new HashMap<>();
+        check.put("check", checking);
+        return check;
     }
 
 }
