@@ -37,27 +37,15 @@ public class dashBoard {
             } else {
                 usageBTtoTB = "0";
             }
-
             model.addAttribute("sName", service.getKindof());
             model.addAttribute("sUsername", service.getUsername());
             model.addAttribute("sStartdate", service.getStartdate());
             model.addAttribute("sEnddate", service.getEnddate());
             model.addAttribute("sUsage", usageBTtoTB);
             model.addAttribute("sVolume", service.getVolume());
-
-            boolean isScompany = service.getCompany() != "";
-            boolean isSphone = service.getPhone() != "";
-            boolean isSemail = service.getEmail() != "";
-
-            if (isScompany) {
-                model.addAttribute("sCompany", service.getCompany());
-            }
-            if (isSphone) {
-                model.addAttribute("sPhone", service.getPhone());
-            }
-            if (isSemail) {
-                model.addAttribute("sEmail", service.getEmail());
-            }
+            model.addAttribute("sCompany", service.getCompany());
+            model.addAttribute("sPhone", service.getPhone());
+            model.addAttribute("sEmail", service.getEmail());
         }
         return "dashBoard";
     }

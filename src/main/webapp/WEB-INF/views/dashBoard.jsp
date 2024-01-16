@@ -28,13 +28,13 @@
                 <div>입니다.</div>
             </div>
             <div style="margin-top: 20px;display: flex;flex-direction: row">
-                <c:if test="${isScompany}">
+                <c:if test="${not empty sCompany}">
                     <div style="margin: 5px;">회사: ${sCompany}</div>
                 </c:if>
-                <c:if test="${isSphone}">
+                <c:if test="${not empty sPhone}">
                     <div style="margin: 5px;">전화 번호: ${sPhone}</div>
                 </c:if>
-                <c:if test="${isSemail}">
+                <c:if test="${not empty sEmail}">
                     <div style="margin: 5px;">이메일: ${sEmail}</div>
                 </c:if>
             </div>
