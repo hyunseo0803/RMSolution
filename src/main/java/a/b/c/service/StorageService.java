@@ -12,6 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -41,6 +42,9 @@ public class StorageService {
         file.transferTo(savedFile);
 
         LocalDateTime date = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일 HH:mm");
+
+        String formattedDateTime = date.format(formatter);
 
         Path path = Paths.get(projectPath + "\\" + filename);
 
@@ -51,7 +55,7 @@ public class StorageService {
             fileVO.setMid(member.getMid());
             fileVO.setFilename(file.getOriginalFilename());
             fileVO.setFilepath(mydir + "\\" + filename);
-            fileVO.setDatetime(date);
+            fileVO.setDatetime(formattedDateTime);
             fileVO.setSize(filesize);
             storageDAO.save(fileVO);
         });
