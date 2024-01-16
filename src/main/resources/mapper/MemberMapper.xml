@@ -10,7 +10,7 @@
         FROM member
         WHERE mid = #{mid}
     </select>
-    <select id="isIdDuplicate" parameterType="String">
+    <select id="isIdDuplicate">
         SELECT COUNT(*)
         FROM member
         WHERE mid = #{mid}
