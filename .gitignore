@@ -33,4 +33,4 @@ build/
 .vscode/
 
 #사용자 업로드 파일
-/files/*
+src/main/webapp/WEB-INF/views/files
