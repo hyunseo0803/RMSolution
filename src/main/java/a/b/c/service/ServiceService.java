@@ -5,6 +5,7 @@ import a.b.c.vo.MemberVO;
 import a.b.c.vo.ServiceVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.util.Optional;
@@ -23,7 +24,13 @@ public class ServiceService {
     }
 
     public Integer sumUsageById(String userId) {
-        return serviceDAO.sumUsageById(userId);
+        Integer usage;
+        if (serviceDAO.sumUsageById(userId) == null) {
+            usage = 0;
+        } else {
+            usage = serviceDAO.sumUsageById(userId);
+        }
+        return usage;
     }
 
     public void saveNewEnddate(LocalDate newenddate, String mid) {
