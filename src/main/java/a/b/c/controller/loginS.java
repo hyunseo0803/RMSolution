@@ -24,15 +24,16 @@ public class loginS {
     }
 
     //회원 가입- 아이디 중복 검사
-    @ResponseBody //JSON 변환
-    @GetMapping("/checkDuplicate/{mid}")
-    public Map<String, Object> checkDuplicate(@PathVariable String mid) {
-        Boolean check = memberService.IsExistingMember(mid);
-        Map<String, Object> checking = new HashMap<>();
-        checking.put("checking", check);
-        return checking;
-
+    @GetMapping("/checkDuplicate")
+    @ResponseBody
+    public Map<String, Object> checkDuplicate(@RequestParam String memberId) {
+        boolean check = memberService.isIdDuplicate(memberId);
+        Map<String, Object> result = new HashMap<>();
+        result.put("idcheck", check);
+        return result;
     }
+
+
 
 }
 
