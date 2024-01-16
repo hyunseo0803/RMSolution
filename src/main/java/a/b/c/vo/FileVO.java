@@ -7,9 +7,21 @@ public class FileVO {
     String mid;
     String filename;
     String filepath;
-    LocalDateTime datetime;
+    String datetime;
 
     int size;
+
+    String convertsize;
+
+
+    public String getConvertsize() {
+        return convertsize;
+    }
+
+    public void setConvertsize(String convertsize) {
+        this.convertsize = convertsize;
+    }
+
 
     public int getSize() {
         return size;
@@ -51,11 +63,11 @@ public class FileVO {
         this.filepath = filepath;
     }
 
-    public LocalDateTime getDatetime() {
+    public String getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(LocalDateTime datetime) {
+    public void setDatetime(String datetime) {
         this.datetime = datetime;
     }
 
