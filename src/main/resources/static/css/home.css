@@ -1,0 +1,32 @@
+@font-face {
+    font-family: 'iceJaram-Rg';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-2@1.0/iceJaram-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.coment {
+    font-family: iceJaram-Rg;
+    font-size: 50px;
+    letter-spacing: 5px;
+}
+
+.serviceDiv {
+    background-color: white;
+    margin: 15px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.checkImgDiv {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+}
+.checkImg{
+    width:20px;
+    height: 20px;
+    margin-right: 5px;
+}
