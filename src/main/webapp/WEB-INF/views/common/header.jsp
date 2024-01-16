@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,29 +8,29 @@
     <title>home</title>
     <meta charset="UTF-8">
 </head>
-<body>
-<div class="headerRow" style="justify-content: space-between">
-    <div style="font-size: large">RMsolution</div>
+<body class="headerB">
+<div class="headerRow" style="justify-content: space-between;margin-left: 5%;margin-right: 5%;">
+    <div style="font-size: large">
+        <a href="/" class="logo">RMsolution</a>
+    </div>
     <div class="headerRow">
         <c:if test="${isLogin}">
-            <a href="dashBoard">
-                <button style="border: none;background-color: transparent">Go to DashBoard</button>
+            <a href="/dashBoard" class="textNodeco" style="color: black">
+                    ${mid}님의 스토리지
             </a>
-            <%--        <div style="margin-left: 15px;">${mid}님, 환영합니다.</div>--%>
-            <a href="/logout" style="margin-left: 15px;color: red">
-                로그 아웃
+            <a href="/logout" class="logout">
+                로그아웃
             </a>
         </c:if>
         <c:if test="${not isLogin}">
-            <a href="login">
-                <button>로그인</button>
+            <a href="login" class="textNodeco" style="color: black;margin-right: 15px;">
+                로그인
             </a>
-            <a href="signup">
-                <button>회원가입</button>
+            <a href="/signup" class="textNodeco" style="color: coral;margin-right: 20px;">
+                회원가입
             </a>
         </c:if>
     </div>
 </div>
-
 </body>
 </html>

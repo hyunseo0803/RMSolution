@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" %>
-<div style="color:rgb(128,128,128);display: flex;flex-direction: row;justify-content: space-between;margin:20px">
-    <div>
-        <div>Developer:Choi Hyun Seo</div>
-        <div>Email:abcdefghjk5@naver.com</div>
-    </div>
-    <div>
-        <div>git</div>
-        <div>phon: 010-9915-9390</div>
-    </div>
 
+<link rel="stylesheet" type="text/css" href="/css/footer.css">
+<body>
+<div class="footerDiv">
+        <div class="footerContent">Developer: Choi Hyun Seo</div>
+        <div class="footerContent">Email: abcdefghjk5@naver.com</div>
+        <div class="footerContent">
+            <a href="https://github.com/hyunseo0803/RMSolution">
+                <img src="/img/githubImg.svg" style="width: 40px">
+            </a>
+        </div>
 </div>
-
+</body>
