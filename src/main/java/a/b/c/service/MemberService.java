@@ -28,7 +28,7 @@ public class MemberService {
 
 
     //계정 존재 여부 확인 하는 공통 함수,(로그인, 회원 가입 아이디 중복 검사)
-    public Boolean IsExistingMember(String mid) {
+    public Boolean isIdDuplicate(String mid) {
         String existingMember = memberDAO.isIdDuplicate(mid);
         return existingMember.equals("1");
     }
