@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -39,7 +38,12 @@ public class storageFile {
         ServiceVO service = serviceService.findServiceByUserId(user.getUsername());
         boolean isService = service != null;
         model.addAttribute("isService", isService);
+        model.addAttribute("mid", user.getUsername());
+
         List<FileVO> filelist = storageService.findAllFileById(user.getUsername());
+        for (FileVO file : filelist) {
+            file.setConvertsize(serviceService.convertBytes(file.getSize()));
+        }
         model.addAttribute("filelist", filelist);
         return "storageUpload";
     }
@@ -49,6 +53,7 @@ public class storageFile {
     public Map<String, Object> uploadCheck(@AuthenticationPrincipal User user, @RequestParam long fileinputsize) {
         ServiceVO service = serviceService.findServiceByUserId(user.getUsername());
         long usage = serviceService.sumUsageById(user.getUsername());
+
         long volume = service.getVolume() * 1099511627776L;
 
         LocalDate enddate = serviceService.findServiceByUserId(user.getUsername()).getEnddate();
@@ -63,8 +68,6 @@ public class storageFile {
         Map<String, Object> check = new HashMap<>();
         check.put("check", checking);
         return check;
-
-
     }
 
     @PostMapping("/storageUpload")
@@ -89,10 +92,8 @@ public class storageFile {
                 String fileName = file.getFilename();
                 String storedFilePath = file.getFilepath();
 
-                // 파일을 읽어오기 위해 Path 객체 생성
                 Path filePath = Paths.get(System.getProperty("user.dir") + storedFilePath);
 
-                // 파일이 존재하는지 확인
                 if (Files.exists(filePath)) {
                     // 응답 헤더 설정
                     response.setContentType("application/octet-stream");
@@ -100,21 +101,18 @@ public class storageFile {
                     response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(fileName, StandardCharsets.UTF_8) + "\";");
                     response.setHeader("Content-Transfer-Encoding", "binary");
 
-                    // 파일을 읽어와서 응답에 쓰기
                     Files.copy(filePath, response.getOutputStream());
                     response.getOutputStream().flush();
                 } else {
-                    // 파일이 존재하지 않을 경우에 대한 처리
+                    // 파일이 존재하지 않을 경우
                     response.setStatus(HttpServletResponse.SC_NOT_FOUND);
                 }
             } else {
-                // 해당 파일 정보가 없을 경우에 대한 처리
+                // 해당 파일 정보가 없을 경우
                 response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             }
         } catch (IOException e) {
-            // IOException 발생 시에 대한 예외 처리
             response.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         }
     }
-
 }

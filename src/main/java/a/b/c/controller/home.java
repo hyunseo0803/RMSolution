@@ -13,7 +13,6 @@ public class home {
     public String index(@AuthenticationPrincipal User user, Model model) {
         boolean isLogin = user != null;
         model.addAttribute("isLogin", isLogin);
-
         if (isLogin) {
             model.addAttribute("mid", user.getUsername());
         }
